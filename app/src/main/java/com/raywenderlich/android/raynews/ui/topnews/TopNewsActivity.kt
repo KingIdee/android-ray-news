@@ -1,11 +1,11 @@
-package com.raywenderlich.android.raynews
+package com.raywenderlich.android.raynews.ui.topnews
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import com.raywenderlich.android.raynews.ui.topnews.TopNewsFragment
+import com.raywenderlich.android.raynews.R
 
 class TopNewsActivity : AppCompatActivity() {
-  
+
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.top_news_activity)
@@ -15,5 +15,5 @@ class TopNewsActivity : AppCompatActivity() {
               .commitNow()
     }
   }
-  
+
 }
