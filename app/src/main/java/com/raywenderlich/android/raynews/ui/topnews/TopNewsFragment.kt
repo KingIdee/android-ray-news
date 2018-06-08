@@ -13,7 +13,6 @@ import android.widget.Toast
 import com.raywenderlich.android.raynews.R
 import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.functions.Consumer
 
 class TopNewsFragment : Fragment() {
 
@@ -45,7 +44,16 @@ class TopNewsFragment : Fragment() {
     viewModel = ViewModelProviders.of(this).get(TopNewsViewModel::class.java)
     disposable.add(viewModel.states
             .subscribe({ render(it) }))
-    viewModel.subscribeToIntents()
+    viewModel.subscribeToIntents(intents())
+  }
+
+  override fun onDestroy() {
+    super.onDestroy()
+    disposable.dispose()
+  }
+
+  private fun intents(): Observable<TopNewsIntent> {
+    return Observable.just(TopNewsIntent.LoadTopNews)
   }
 
   private fun render(it: TopNewsState?) {

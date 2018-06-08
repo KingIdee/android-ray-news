@@ -15,18 +15,14 @@ class TopNewsViewModel : ViewModel() {
   private val privateStateObservable: Observable<TopNewsState> = composeStreams()
   val states: Observable<TopNewsState> = privateStateObservable
 
-  fun subscribeToIntents() {
-    intents().subscribe(intentsSubscriber)
-  }
-
-  private fun intents(): Observable<TopNewsIntent> {
-    return Observable.just(TopNewsIntent.LoadTopNews)
+  fun subscribeToIntents(intents: Observable<TopNewsIntent>) {
+    intents.subscribe(intentsSubscriber)
   }
 
   private fun composeStreams(): Observable<TopNewsState> {
     return intentsSubscriber
             .compose(intentToResult())
-            .scan(TopNewsState.idle(), reducer)
+            .scan(TopNewsState.loading(), reducer)
             .distinctUntilChanged()
             .replay(1)
             .autoConnect(0)
@@ -57,6 +53,7 @@ class TopNewsViewModel : ViewModel() {
                   loading = false,
                   response = result.result,
                   error = null
+
           )
         }
         is TopNewsResult.Failure -> {

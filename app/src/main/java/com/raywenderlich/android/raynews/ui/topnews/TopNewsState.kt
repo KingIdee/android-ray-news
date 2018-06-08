@@ -4,7 +4,7 @@ import com.raywenderlich.android.raynews.model.topnews.TopNewsResponse
 
 data class TopNewsState(var loading: Boolean, var response: TopNewsResponse?, var error: Throwable?) {
   companion object {
-    fun idle(): TopNewsState {
+    fun loading(): TopNewsState {
       return TopNewsState(loading = true,
               response = null,
               error = null)
