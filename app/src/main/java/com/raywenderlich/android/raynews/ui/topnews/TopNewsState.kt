@@ -35,8 +35,8 @@ data class TopNewsState(var loading: Boolean, var response: TopNewsResponse?, va
   companion object {
     fun loading(): TopNewsState {
       return TopNewsState(loading = true,
-              response = null,
-              error = null)
+          response = null,
+          error = null)
     }
   }
 }

@@ -72,7 +72,7 @@ class TopNewsFragment : Fragment() {
     progressBar = view!!.findViewById(R.id.progress_bar)
     viewModel = ViewModelProviders.of(this).get(TopNewsViewModel::class.java)
     disposable.add(viewModel.states
-            .subscribe({ render(it) }))
+        .subscribe({ render(it) }))
     viewModel.subscribeToIntents(intents())
   }
 

@@ -29,8 +29,8 @@
  */
 package com.raywenderlich.android.raynews.ui.topnews
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import com.raywenderlich.android.raynews.R
 
 class TopNewsActivity : AppCompatActivity() {
@@ -40,8 +40,8 @@ class TopNewsActivity : AppCompatActivity() {
     setContentView(R.layout.top_news_activity)
     if (savedInstanceState == null) {
       supportFragmentManager.beginTransaction()
-              .replace(R.id.container, TopNewsFragment.newInstance())
-              .commitNow()
+          .replace(R.id.container, TopNewsFragment.newInstance())
+          .commitNow()
     }
   }
 

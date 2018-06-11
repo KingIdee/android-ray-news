@@ -50,26 +50,26 @@ class TopNewsViewModel : ViewModel() {
 
   private fun composeStreams(): Observable<TopNewsState> {
     return intentsSubscriber
-            .compose(intentToResult())
-            .scan(TopNewsState.loading(), reducer)
-            .distinctUntilChanged()
-            .replay(1)
-            .autoConnect(0)
+        .compose(intentToResult())
+        .scan(TopNewsState.loading(), reducer)
+        .distinctUntilChanged()
+        .replay(1)
+        .autoConnect(0)
   }
 
   private fun intentToResult() = ObservableTransformer<TopNewsIntent, TopNewsResult> { intents ->
 
     intents.publish { observableActions ->
       observableActions.ofType(TopNewsIntent.LoadTopNews::class.java)
-              .flatMap({
-                repository.fetchTopNews()
-                        .toObservable()
-                        .map { news -> TopNewsResult.Success(news) }
-                        .cast(TopNewsResult::class.java)
-                        .onErrorReturn(TopNewsResult::Failure)
-                        .subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-              })
+          .flatMap({
+            repository.fetchTopNews()
+                .toObservable()
+                .map { news -> TopNewsResult.Success(news) }
+                .cast(TopNewsResult::class.java)
+                .onErrorReturn(TopNewsResult::Failure)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+          })
     }
 
   }
@@ -79,17 +79,17 @@ class TopNewsViewModel : ViewModel() {
       when (result) {
         is TopNewsResult.Success -> {
           previousState.copy(
-                  loading = false,
-                  response = result.result,
-                  error = null
+              loading = false,
+              response = result.result,
+              error = null
 
           )
         }
         is TopNewsResult.Failure -> {
           previousState.copy(
-                  loading = false,
-                  response = null,
-                  error = result.error
+              loading = false,
+              response = null,
+              error = result.error
           )
         }
 
