@@ -39,21 +39,21 @@ import com.raywenderlich.android.raynews.R
 
 class TopNewsFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = TopNewsFragment()
-    }
+  companion object {
+    fun newInstance() = TopNewsFragment()
+  }
 
-    private lateinit var viewModel: TopNewsViewModel
+  private lateinit var viewModel: TopNewsViewModel
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View {
-        return inflater.inflate(R.layout.top_news_fragment, container, false)
-    }
+  override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+                            savedInstanceState: Bundle?): View {
+    return inflater.inflate(R.layout.top_news_fragment, container, false)
+  }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(TopNewsViewModel::class.java)
-        // TODO: Use the ViewModel
-    }
+  override fun onActivityCreated(savedInstanceState: Bundle?) {
+    super.onActivityCreated(savedInstanceState)
+    viewModel = ViewModelProviders.of(this).get(TopNewsViewModel::class.java)
+    // TODO: Use the ViewModel
+  }
 
 }

@@ -44,16 +44,16 @@ import java.util.concurrent.TimeUnit
 class TopNewsRepository {
 
   fun fetchTopNews(): Single<TopNewsResponse> {
-    return getRetrofitClient().getTopNews("us","business",BuildConfig.API_KEY)
+    return getRetrofitClient().getTopNews("us", "business", BuildConfig.API_KEY)
   }
 
   private fun getRetrofitClient(): NewsApi {
 
     val gson = GsonBuilder().setLenient().create()
     val builder = Retrofit.Builder()
-            .baseUrl("https://newsapi.org/")
-            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-            .addConverterFactory(GsonConverterFactory.create(gson))
+        .baseUrl("https://newsapi.org/")
+        .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+        .addConverterFactory(GsonConverterFactory.create(gson))
 
 
     //setup logging interceptor
@@ -66,15 +66,15 @@ class TopNewsRepository {
 
     // setup httpclient
     val httpClient = OkHttpClient.Builder()
-            .addInterceptor(loggingInterceptor)
-            //.addInterceptor(connectionInterceptor)
-            .connectTimeout(120, TimeUnit.SECONDS)
-            .readTimeout(120, TimeUnit.SECONDS)
-            .build()
+        .addInterceptor(loggingInterceptor)
+        //.addInterceptor(connectionInterceptor)
+        .connectTimeout(120, TimeUnit.SECONDS)
+        .readTimeout(120, TimeUnit.SECONDS)
+        .build()
 
     val retrofit = builder
-            .client(httpClient)
-            .build()
+        .client(httpClient)
+        .build()
     return retrofit.create(NewsApi::class.java)
   }
 
