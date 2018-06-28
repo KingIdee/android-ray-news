@@ -57,7 +57,7 @@ class TopNewsFragment : Fragment() {
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
-    progressBar = view!!.findViewById(R.id.progress_bar)
+    progressBar = view.findViewById(R.id.progress_bar)
     val recyclerView: RecyclerView = view.findViewById(R.id.recyclerView)
     recyclerView.layoutManager = LinearLayoutManager(activity)
     recyclerView.adapter = newsAdapter
